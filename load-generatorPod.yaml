@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-load-generator
+spec:
+  replicas: 1  # Adjust as needed for more load
+  selector:
+    matchLabels:
+      app: cpu-load-generator
+  template:
+    metadata:
+      labels:
+        app: cpu-load-generator
+    spec:
+      containers:
+      - name: cpu-load-generator
+        image: busybox
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 400m
+        command: ["/bin/sh", "-c"]
+        args:
+          - "yes >/dev/null 2>&1 | while true; do sleep 0.1s; done"

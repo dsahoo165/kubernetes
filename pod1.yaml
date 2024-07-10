@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-acr-pod
+  namespace: default
+  labels:  # Add labels here
+    app: my-acr-pod
+spec:
+  containers:
+  - name: my-container
+    image: neoint.azurecr.io/hubs-ng12:1
+    ports:
+    - containerPort: 8080
+  imagePullSecrets:
+  - name: acr-secret

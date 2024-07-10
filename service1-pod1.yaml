@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-acr-service128
+  namespace: default
+spec:
+  type: NodePort  # Specify the service type here
+  selector:
+    app: my-acr-pod
+  ports:
+    - protocol: TCP
+      port: 8082   # External port on which you want to access the service
+      targetPort: 80  # Port on the pod where the application is listening
