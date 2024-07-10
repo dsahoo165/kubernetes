@@ -18,11 +18,11 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: neoint.azurecr.io/hubs-ng12:1
+        image: nginx:latest
         ports:
         - containerPort: 80  # Port on which your application inside the container listens
-      imagePullSecrets:
-      - name: acr-secret  
+      # imagePullSecrets:
+      # - name: acr-secret  
 
 
 ---
@@ -31,7 +31,7 @@ kind: Service
 metadata:
   name: my-acr-service
 spec:
-  type: NodePort  # Expose the service using NodePort
+  #type: NodePort  # Expose the service using NodePort
   selector:
     app: my-acr-app  # Select pods with label app=my-acr-app
   ports:

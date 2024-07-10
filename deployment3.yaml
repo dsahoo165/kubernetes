@@ -31,7 +31,7 @@ kind: Service
 metadata:
   name: my-acr-service
 spec:
-  type: NodePort  # Expose the service using NodePort
+  #type: NodePort  # Expose the service using NodePort
   selector:
     app: my-acr-app  # Select pods with label app=my-acr-app
   ports:
