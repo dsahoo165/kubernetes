@@ -1,39 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: my-deployment2
   labels:
-    app: my-acr-app
+    app: my-acr-app2
 spec:
   replicas: 1  # Number of desired pods
   selector:
     matchLabels:
-      app: my-acr-app  # Pod selector matching label
+      app: my-acr-app2  # Pod selector matching label
 
   # Pod template specification
   template:
     metadata:
       labels:
-        app: my-acr-app  # Label applied to pods
+        app: my-acr-app2  # Label applied to pods
     spec:
       containers:
-      - name: my-container
-        image: nginx:latest
+      - name: my-container2
+        image: neoint.azurecr.io/hubs-ng12:4
         ports:
         - containerPort: 80  # Port on which your application inside the container listens
-      # imagePullSecrets:
-      # - name: acr-secret  
+      imagePullSecrets:
+      - name: acr-secret  
 
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-acr-service
+  name: my-acr-service2
 spec:
   #type: NodePort  # Expose the service using NodePort
   selector:
-    app: my-acr-app  # Select pods with label app=my-acr-app
+    app: my-acr-app2  # Select pods with label app=my-acr-app
   ports:
     - protocol: TCP
       port: 80  # External port to access the service
